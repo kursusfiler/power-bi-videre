@@ -1,0 +1,75 @@
+Total =
+SELECTEDMEASURE ()
+===============================
+Daily average =
+AVERAGEX (
+    VALUES ( 'Date'[Date] ),
+    SELECTEDMEASURE ()
+)
+===============================
+Monthly average =
+AVERAGEX (
+    VALUES ( 'Date'[Month] ),
+    SELECTEDMEASURE ()
+)
+===============================
+Current =
+SELECTEDMEASURE ()
+===============================
+YTD =
+CALCULATE (
+    SELECTEDMEASURE (),
+    DATESYTD ( 'Date'[Date] )
+)
+===============================
+PY =
+CALCULATE (
+    SELECTEDMEASURE (),
+    SAMEPERIODLASTYEAR ( 'Date'[Date] )
+)
+===============================
+PY YTD =
+CALCULATE (
+    SELECTEDMEASURE (),
+    SAMEPERIODLASTYEAR ( 
+        DATESYTD ( 'Date'[Date] ) 
+    )
+)
+===============================
+YOY =
+VAR CY = 
+    SELECTEDMEASURE ()
+VAR PY = 
+    CALCULATE ( 
+        SELECTEDMEASURE (),
+        SAMEPERIODLASTYEAR ( 'Date'[Date] )
+    )
+RETURN
+    CY - PY
+===============================
+YOY% =
+VAR CY = 
+    SELECTEDMEASURE ()
+VAR PY = 
+    CALCULATE (
+        SELECTEDMEASURE (),
+        SAMEPERIODLASTYEAR ( 'Date'[Date] )
+    )
+VAR YOY = CY - PY
+RETURN
+    DIVIDE ( 
+        YOY, 
+        PY
+    )
+===============================
+Order date =
+CALCULATE (
+    SELECTEDMEASURE (),
+    USERELATIONSHIP ( 'Date'[Date], Sales[Order Date] )
+)
+===============================
+Shipping date =
+CALCULATE (
+    SELECTEDMEASURE (),
+    USERELATIONSHIP ( 'Date'[Date], Sales[Ship Date] )
+)

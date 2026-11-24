@@ -1,0 +1,117 @@
+Δ
+==================================================
+IF ( SELECTEDMEASURE() <= 1E3, "#,##0", "#,##0,.0K" )
+==================================================
+VAR CurrentValue = SELECTEDMEASURE()
+RETURN
+    SWITCH (
+        TRUE(),
+	CurrentValue <= 1E3, "#,##0",
+	CurrentValue <= 1E6, "#,##0,.0K",
+	CurrentValue <= 1E9, "#,##0,,.0M",
+	CurrentValue <= 1E12, "#,##0,,,.0B"
+    )
+==================================================
+HighLight CF =
+VAR min_val =
+    MINX (
+        ALL ( Kalender[Måned], Kalender[MånedNr] ),
+	[Salg]
+    )
+VAR max_val =
+    MAXX (
+        ALL ( Kalender[Måned], Kalender[MånedNr] ),
+	[Salg]
+    )
+VAR color = 
+    SWITCH (
+        TRUE(),
+	[Salg] = min_val, "bad",
+	[Salg] = max_val, "good",
+	"neutral"
+    )
+RETURN
+    color
+==================================================
+Pos linje = 0
+==================================================
+Neg linje = 0
+==================================================
+Over budget = IF ( [Afvigelse] > 0, [Afvigelse] )
+==================================================
+Under budget = IF ( [Afvigelse] <= 0, [Afvigelse] )
+==================================================
+Y1 Max =
+MAXX (
+    ALLSELECTED ( Dato[Måned] ),
+    [Salg]
+) * 3
+==================================================
+Y2 Min =
+MAXX (
+    ALLSELECTED ( Dato[Måned] ),
+    ABS ( [Afvigelse] )
+) * -3
+==================================================
+Revenue PY CF =
+VAR BaselineVal = [Revenue PY]
+VAR ValToCompare = [Revenue]
+RETURN
+IF (
+    DIVIDE (
+        ValToCompare - BaselineVal,
+	BaselineVal
+    ) < 0,
+    "Red",
+    "Grey"
+)
+==================================================
+Revenue PL CF =
+VAR BaseLineVal = [Revenue PL]
+VAR ValToCompare = [Revenue]
+RETURN
+    IF (
+        DIVIDE (
+	ValToCompare - BaselineVal,
+	BaselineVal
+    ) < 0,
+    "Red",
+    "Grey"
+)
+==================================================
+Revenue PY % diff from Revenue =
+VAR BaselineVal = [Revenue PY]
+VAR ValToCompare = [Revenue]
+VAR Symbol = 
+    IF (
+         BaselineVal < ValToCompare,
+	 " ▲",
+	 " ▼"
+    )
+RETURN
+    FORMAT ( 
+        DIVIDE (
+	    ValToCompare - BaselineVal,
+	    BaselineVal
+	),
+	" 0.00%"
+    ) & Symbol
+==================================================
+Revenue PL % diff from Revenue =
+VAR BaselineVal = [Revenue PL]
+VAR ValToCompare = [Revenue]
+VAR Symbol = 
+    IF (
+        BaselineVal < ValToCompare,
+	" ▲",
+	" ▼"
+    )
+RETURN
+    FORMAT (
+        DIVIDE (
+	    ValToCompare - BaselineVal,
+	    BaselineVal
+	),
+	" 0.00%"
+    ) & Symbol
+==================================================

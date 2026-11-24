@@ -1,0 +1,18 @@
+[MailAddress] = USERPRINCIPALNAME()
+==================================================
+PathFull = 
+PATH ( Employee[EmployeeKey], Employee[ParentEmployeeKey] )
+==================================================
+
+VAR CurrentLoggedInUser =
+    LOOKUPVALUE (
+        Employee[EmployeeKey],
+	Employee[EmailAddress],
+	USERPRINCIPALNAME()
+    )
+ 
+RETURN
+    PATHCONTAINS ( 
+	Employee[PathFull], 
+	CurrentLoggedInUser 
+    )

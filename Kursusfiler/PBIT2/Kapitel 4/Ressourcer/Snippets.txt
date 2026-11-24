@@ -1,0 +1,225 @@
+TemperatureRegionMonthKey =
+RELATED ( 'Sales Territory'[Sales Territory Region] )
+    & RELATED ( 'Date'[Month Number of Year] )
+===============================
+Målinger
+===============================
+Total Transactions =
+COUNTROWS ( Sales )
+===============================
+Total Sales =
+SUM ( Sales[Sales Amount] )
+===============================
+Total Cost =
+SUM ( Sales[Total Product Cost] )
+===============================
+Profit =
+[Total Sales] - [Total Cost]
+===============================
+Profit Margin =
+DIVIDE (
+    [Profit],
+    [Total Sales]
+)
+===============================
+Beregnede kolonner
+===============================
+Full Name =
+VAR FirstName = Customer[First Name]
+VAR MidName = Customer[Middle Name]
+VAR LastName = Customer[Last Name]
+VAR Result = 
+    FirstName & " "
+        & IF (
+            MidName <> "",
+            LEFT ( MidName, 1 ) & ". "
+        ) & LastName
+RETURN
+	Result
+===============================
+Age Breakdown =
+VAR CurrentAge = Customer[Current Age]
+VAR Result =
+    IF (
+        CurrentAge >= 60,
+        "60+",
+        IF (
+            CurrentAge >= 50,
+            "50-59",
+            IF (
+                CurrentAge >= 40,
+                "40-49",
+                "18-39"
+            )
+        )
+    )
+RETURN
+    Result
+===============================
+Age Breakdown =
+VAR CurrentAge = Customer[Current Age]
+VAR Result =
+    SWITCH (
+        TRUE (),
+        CurrentAge >= 60, "60+",
+        CurrentAge >= 50, "50-59",
+        CurrentAge >= 40, "40-59",
+        "18-39"
+    )
+RETURN
+    Result
+===============================
+Month Year =
+FORMAT (
+    'Date'[Date],
+    "MM-YYYY"
+)
+===============================
+Transactions =
+COUNTROWS ( RELATEDTABLE ( Sales ) )
+===============================
+Last Order Date =
+MAXX (
+    RELATEDTABLE ( Sales ),
+    Sales[Order Date]
+)
+===============================
+Målinger med CALCULATE
+===============================
+Total Sales (All Countries) =
+CALCULATE (
+    [Total Sales],
+    ALL ( 'Sales Territory'[Sales Territory Country] )
+)
+===============================
+Total Sales (All Countries) =
+IF (
+    ISBLANK ( [Total Sales] ),
+    BLANK (),
+    CALCULATE (
+        [Total Sales],
+        ALL ( 'Sales Territory'[Sales Territory Country] )
+    )
+)
+===============================
+Country Percent of Total Sales =
+DIVIDE (
+    [Total Sales],
+    [Total Sales (All Countries)]
+)
+===============================
+Total Sales (United States) =
+CALCULATE (
+    [Total Sales],
+    'Sales Territory'[Sales Territory Country] = "United States"
+)
+===============================
+Total Sales (United States) =
+IF (
+    ISBLANK ( [Total Sales] ),
+    BLANK (),
+    CALCULATE (
+        [Total Sales],
+        'Sales Territory'[Sales Territory Country] = "United States"
+    )
+)
+===============================
+Total Sales (US and Canada) =
+CALCULATE (
+    [Total Sales],
+    'Sales Territory'[Sales Territory Country]
+        IN {
+            "United States",
+            "Canada"
+        }
+)
+===============================
+Total Sales (US and Canada) =
+CALCULATE (
+    [Total Sales],
+    'Sales Territory'[Sales Territory Country] = "United States"
+        || 'Sales Territory'[Sales Territory Country] = "Canada"
+)
+===============================
+Total Sales (CY2011 =
+CALCULATE (
+    [Total Sales],
+    'Date'[Calendar Year] = 2011
+)
+===============================
+Total Sales (FY2012) =
+CALCULATE (
+    [Total Sales],
+    'Date'[Fiscal Year] = 2012
+)
+===============================
+Tidsintelligens
+===============================
+YTD Sales =
+TOTALYTD (
+    [Total Sales],
+    'Date'[Date]
+)
+===============================
+Fiscal YTD Sales =
+TOTALYTD (
+    [Total Sales],
+    'Date'[Date],
+    "06/30"
+)
+===============================
+Prior Year Sales =
+CALCULATE (
+    [Total Sales],
+    SAMEPERIODLASTYEAR ( 'Date'[Date] )
+)
+===============================
+Prior Year YTD Sales =
+CALCULATE (
+    [YTD Sales],
+    SAMEPERIODLASTYEAR ( 'Date'[Date] )
+)
+===============================
+Prior Month Sales =
+CALCULATE (
+    [Total Sales],
+    DATEADD (
+        'Date'[Date],
+        -1,
+        MONTH
+    )
+)
+===============================
+Semi-additive målinger
+===============================
+Inventory Balance =
+SUM ( Inventory[Units Balance] )
+===============================
+Closing Balance (Last Date) =
+CALCULATE (
+    [Inventory Balance],
+    LASTDATE ( 'Date'[Date] )
+)
+===============================
+Closing Balance (Non Blank) =
+CALCULATE (
+    [Inventory Balance],
+    LASTNONBLANK (
+        'Date'[Date],
+        [Inventory Balance]
+    )
+)
+===============================
+Opening Balance Month =
+CALCULATE (
+    [Inventory Balance],
+    LASTNONBLANK (
+        PARALLELPERIOD (
+            'Date'[Date],
+            -1,
+            MONTH
+        ),
+        [Inventory Balance]
+    )
+)
+===============================

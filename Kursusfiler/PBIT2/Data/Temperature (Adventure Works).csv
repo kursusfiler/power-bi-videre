@@ -1,0 +1,121 @@
+﻿Region,MonthNumber,Avg Temp,Temperature Range
+Australia,1,71.6,Hot
+Australia,2,71.6,Hot
+Australia,3,69.80000000000001,Warm
+Australia,4,64.4,Warm
+Australia,5,59,Warm
+Australia,6,53.6,Cool
+Australia,7,53.6,Cool
+Australia,8,55.400000000000006,Warm
+Australia,9,59,Warm
+Australia,10,62.6,Warm
+Australia,11,66.2,Warm
+Australia,12,69.80000000000001,Warm
+Canada,1,14,Cold
+Canada,2,15.8,Cold
+Canada,3,26.6,Cold
+Canada,4,42.8,Cool
+Canada,5,55.400000000000006,Warm
+Canada,6,64.4,Warm
+Canada,7,69.80000000000001,Warm
+Canada,8,68,Warm
+Canada,9,59,Warm
+Canada,10,48.2,Cool
+Canada,11,35.6,Cold
+Canada,12,19.4,Cold
+Central,1,30.5,Cold
+Central,2,31.9,Cold
+Central,3,41.9,Cool
+Central,4,53.4,Cool
+Central,5,60.2,Warm
+Central,6,73,Hot
+Central,7,74.6,Hot
+Central,8,72.4,Hot
+Central,9,68,Warm
+Central,10,54.5,Cool
+Central,11,42.2,Cool
+Central,12,32.3,Cold
+France,1,37.4,Cold
+France,2,39.2,Cold
+France,3,44.6,Cool
+France,4,50,Cool
+France,5,57.2,Warm
+France,6,62.6,Warm
+France,7,66.2,Warm
+France,8,64.4,Warm
+France,9,60.8,Warm
+France,10,51.8,Cool
+France,11,44.6,Cool
+France,12,39.2,Cold
+Germany,1,30.2,Cold
+Germany,2,33.8,Cold
+Germany,3,39.2,Cold
+Germany,4,46.4,Cool
+Germany,5,55.400000000000006,Warm
+Germany,6,62.6,Warm
+Germany,7,64.4,Warm
+Germany,8,62.6,Warm
+Germany,9,57.2,Warm
+Germany,10,46.4,Cool
+Germany,11,39.2,Cold
+Germany,12,33.8,Cold
+Northeast,1,26.3,Cold
+Northeast,2,25.4,Cold
+Northeast,3,31.4,Cold
+Northeast,4,48.1,Cool
+Northeast,5,52.8,Cool
+Northeast,6,66.8,Warm
+Northeast,7,70.4,Hot
+Northeast,8,66,Warm
+Northeast,9,61.2,Warm
+Northeast,10,47.2,Cool
+Northeast,11,38.1,Cold
+Northeast,12,28,Cold
+Northwest,1,25.8,Cold
+Northwest,2,33.7,Cold
+Northwest,3,36.6,Cold
+Northwest,4,41.1,Cool
+Northwest,5,53.3,Cool
+Northwest,6,58.3,Warm
+Northwest,7,67.3,Warm
+Northwest,8,66.1,Warm
+Northwest,9,58,Warm
+Northwest,10,47.6,Cool
+Northwest,11,41,Cool
+Northwest,12,27.5,Cold
+Southeast,1,45,Cool
+Southeast,2,50.6,Cool
+Southeast,3,55,Warm
+Southeast,4,62.1,Warm
+Southeast,5,68.9,Warm
+Southeast,6,78.4,Hot
+Southeast,7,78.8,Hot
+Southeast,8,77.8,Hot
+Southeast,9,73.8,Hot
+Southeast,10,62,Warm
+Southeast,11,51.5,Cool
+Southeast,12,50.7,Cool
+Southwest,1,29.3,Cold
+Southwest,2,36.1,Cold
+Southwest,3,42.9,Cool
+Southwest,4,49.4,Cool
+Southwest,5,58.1,Warm
+Southwest,6,69.8,Warm
+Southwest,7,74.5,Hot
+Southwest,8,72.5,Hot
+Southwest,9,64.4,Warm
+Southwest,10,54.1,Cool
+Southwest,11,44.6,Cool
+Southwest,12,33.3,Cold
+United Kingdom,1,41,Cool
+United Kingdom,2,42.8,Cool
+United Kingdom,3,44.6,Cool
+United Kingdom,4,50,Cool
+United Kingdom,5,55.400000000000006,Warm
+United Kingdom,6,60.8,Warm
+United Kingdom,7,64.4,Warm
+United Kingdom,8,64.4,Warm
+United Kingdom,9,60.8,Warm
+United Kingdom,10,55.400000000000006,Warm
+United Kingdom,11,48.2,Cool
+United Kingdom,12,42.8,Cool

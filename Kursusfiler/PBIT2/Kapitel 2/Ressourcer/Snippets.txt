@@ -1,0 +1,27 @@
+let
+    Source = Excel.Workbook(File.Contents(FilePath & FileName), null, true),
+    BudgetSheet = Source{[Item=Source{0}[Item], Kind="Sheet"]}[Data],
+    RemoveLastRow = Table.RemoveLastN(BudgetSheet, 1),
+    RemoveLastColumn = Table.RemoveColumns(RemoveLastRow, {"Column15"}),
+    FillDownCategories = Table.FillDown(RemoveLastColumn, {"Column1"}),
+    PromoteHeaders = Table.PromoteHeaders(RemoveLastColumn),
+    RenameColumns = Table.RenameColumns(PromoteHeaders,
+        {
+            {Table.ColumnNames(PromoteHeaders){2}, "Jan"},
+            {Table.ColumnNames(PromoteHeaders){3}, "Feb"},
+            {Table.ColumnNames(PromoteHeaders){4}, "Mar"},
+            {Table.ColumnNames(PromoteHeaders){5}, "Apr"},
+            {Table.ColumnNames(PromoteHeaders){6}, "May"},
+            {Table.ColumnNames(PromoteHeaders){7}, "Jun"},
+            {Table.ColumnNames(PromoteHeaders){8}, "Jul"},
+            {Table.ColumnNames(PromoteHeaders){9}, "Aug"},
+            {Table.ColumnNames(PromoteHeaders){10}, "Sep"},
+            {Table.ColumnNames(PromoteHeaders){11}, "Oct"},
+            {Table.ColumnNames(PromoteHeaders){12}, "Nov"},
+            {Table.ColumnNames(PromoteHeaders){13}, "Dec"}
+        }
+     )
+in
+    RenameColumns
+===========================================================
+try [Samlet beløb] / [Timer] otherwise 0

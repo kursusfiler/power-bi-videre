@@ -1,0 +1,20 @@
+Kalender = 
+ADDCOLUMNS(
+        CALENDAR ( Date ( 2020,1,1), date(2021,12,31)),
+        "År", YEAR ( [Date] ),
+        "MånedNr", MONTH ( [Date] ),
+        "Måned", UPPER ( FORMAT ( [Date], "MMM")),
+        "Ugenr.", WEEKNUM ([Date], 21),
+        "År og måned", FORMAT ( [Date], "YYYY-MM" ),
+        "ÅrMånedKey", YEAR ( [Date] ) * 100 + MONTH ( [Date] ),
+        "Måned og år", UPPER ( FORMAT ( [Date], "MMM YYYY")),
+        "År og kvartal", FORMAT ( [Date], "YYYY-\KQ"),
+        "ÅrKvartalKey", YEAR ( [Date] ) * 10 + QUARTER ( [Date] ),
+        "Uge og År",
+            SWITCH(TRUE(),
+                MONTH([Date]) = 1 && WEEKNUM ([Date],21) > 51, YEAR([Date]) - 1,
+                MONTH([Date]) = 12 && WEEKNUM ([Date],21) = 1, YEAR([Date]) + 1,
+                YEAR([Date])
+            ) & "-U" & FORMAT(WEEKNUM ([Date],21), "00"),
+        "Dato med salg", MAX ( Salg[Dato] )  >= [Date]
+)
