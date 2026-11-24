@@ -21,11 +21,20 @@ Du behøver ikke at kende GitHub for at hente filerne:
 Når du har pakket dem ud, skal din mappestruktur gerne se ud på følgende måde:
 ```
 C:\Kursusfiler\BI-kurser\PBIT2\
-├── AWC\
-│   └── Sales Data\
-├── Fangstrapport\
-├── Finansrapport\
-└── Kursusrapport\
+├── Data        
+├── Diverse
+├── Kapitel x-xx
+│   ├── Data\          
+│   ├── Eksempler\
+│   ├── Løsninger\
+│   └── Ressourcer\
+├── Labs\
+│   ├── Data\
+│   ├── Eksempler\
+│   ├── Løsninger\
+│   └── Ressourcer\
+├── Tools\
+└── X-Ekstra\
 ```
 
 ---
